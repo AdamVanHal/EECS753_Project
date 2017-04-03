@@ -1,0 +1,103 @@
+\documentclass[11pt]{amsart}
+\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ... 
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+\title{Midterm Report}
+\author{Elise McEllhiney, Adam Van Hal}
+\date{\today}                                           % Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+
+\section{Progress}
+\subsection{Devices}
+\begin{itemize}
+\item Imaged two identical Raspberry Pi 3's with ubuntu mate
+\item Installed openCV on Raspberry Pi 3's
+\item Reimaged the intel UP with ubuntu 16.04
+\item Software will be compatible with multiple devices so long as they have installed the dependencies of ROS and openCV
+\end{itemize}
+
+\subsection{Vision}
+\begin{itemize}
+\item We have established that openCV runs successfully on the Raspberry Pi 3
+\item The Raspberry Pi 3 runs two simultaneous webcams in order to produce stereo images
+\item As of now, the images are too slow to be useful in navigation as the pair of images takes about 10 seconds to run.  This is due to the fact that the cameras are reinitialized for each set of images.  Implementation of ROS nodes to allow a single initialization and images to be produced periodically should improve the timings.
+\item If we want updates every 10cm and to have the robot traveling at the maximum 0.5 m/s we will need to update every 200 ms.
+\end{itemize}
+
+\subsection{Robot}
+\begin{itemize}
+\item Robot car is implemented with a Junior Runt Rover chassis and motors and is currently controlled by an arduino uno.
+\item The arduino uno can receive commands through serial inputs.
+\item Commands are configured to allow for forward, backward and turning motions on the robot car.
+\item The robot car can travel about 0.5 m/s with the current implementation.
+\end{itemize}
+
+\section{Plan}
+\subsection*{4-8-2017}
+\begin{itemize}
+\item ROS installed and running on both the Raspberry Pi 3 and the Intel UP.
+\item OpenCV running on the Raspberry Pi 3 with ROS nodes
+\item Intel depth map camera working on the Intel UP
+\end{itemize}
+
+\subsection*{4-15-2017}
+\begin{itemize}
+\item Raspberry Pi 3 producing stereo depth maps using dual webcams
+\item Intel UP producing depthmaps
+\item Calibrate distance of depth map images
+\item Analysis of resolution of depth map images
+\item Timing analysis of production of depth maps
+\end{itemize}
+
+\subsection*{4-22-2017}
+\begin{itemize}
+\item Implement navigation system using depth maps for input
+\item Connect robot to navigation
+\item Have robot respond to navigation commands from controller
+\item Implement collision detection (Detect nearby surfaces and stop if one is too close)
+\end{itemize}
+
+\subsection*{4-29-2017}
+\begin{itemize}
+\item Improve navigation system and algorithms
+\item Utilize machine learning concepts for navigation
+\item Bug fixes
+\end{itemize}
+
+\subsection*{5-3-2017}
+\begin{itemize}
+\item Wrap up project
+\item Project presentation
+\end{itemize}
+
+\section{Division of Labor}
+With the scope of the project as it is, we expect to both work on most components of the project.  The listing below outlines parts of the project that we claim and will be responsible for fixing if unexpected problems occur.\\
+
+Elise
+\begin{itemize}
+\item Implementation of physical robot
+\item Controls that translate serial commands into robot actions
+\item ROS module implementation
+\item Intel UP board and depth camera implementation
+\end{itemize}
+
+Adam
+\begin{itemize}
+\item OpenCV interactions
+\item Raspberry Pi 3 and OpenCV processing of dual webcams into depthmaps
+\item ROS interactions with OpenCV
+\end{itemize}
+
+
+
+
+
+\end{document}  
