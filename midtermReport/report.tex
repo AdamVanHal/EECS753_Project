@@ -20,6 +20,7 @@
 \begin{itemize}
 \item Imaged two identical Raspberry Pi 3's with ubuntu mate
 \item Installed openCV on Raspberry Pi 3's
+\item Established ways to clone implementations and snapshots between Raspberry Pi 3's
 \item Software will be compatible with multiple devices so long as they have installed the dependencies of ROS and openCV
 \end{itemize}
 
@@ -27,8 +28,9 @@
 \begin{itemize}
 \item We have established that openCV runs successfully on the Raspberry Pi 3
 \item The Raspberry Pi 3 runs two simultaneous webcams in order to produce stereo images
-\item As of now, the images are too slow to be useful in navigation as the pair of images takes about 10 seconds to run.  This is due to the fact that the cameras are reinitialized for each set of images.  Implementation of ROS nodes to allow a single initialization and images to be produced periodically should improve the timings.
-\item If we want updates every 10cm and to have the robot traveling at the maximum 0.5 m/s we will need to update every 200 ms.
+\item We have researched the capabilities of OpenCV running stereo calculations and decided that the depth map produced is usable for navigation. 
+\item As of now, the images are retrieved too slowly to be useful in navigation as the pair of images takes about 10 seconds to run.  This is due to the fact that the cameras are reinitialized for each set of images.  Implementation of ROS nodes to allow a single initialization and images to be produced periodically should improve the timings.
+\item If we want updates every 10cm and to have the robot traveling at the maximum 0.5 m/s we will need to update every 200 ms. obviously faster speeds will require a faster update period for the same result.
 \end{itemize}
 
 \subsection{Robot}
@@ -36,6 +38,7 @@
 \item Robot car is implemented with a Junior Runt Rover chassis and motors and is currently controlled by an arduino uno.
 \item The arduino uno can receive commands through serial inputs.
 \item Commands are configured to allow for forward, backward and turning motions on the robot car.
+\item If needed, more complicated commands could be configured for navigational purposes.
 \item The robot car can travel about 0.5 m/s with the current implementation.
 \end{itemize}
 
@@ -43,7 +46,7 @@
 \subsection*{4-8-2017}
 \begin{itemize}
 \item ROS installed and running on both the Raspberry Pi 3 and the Intel UP.
-\item OpenCV running on the Raspberry Pi 3 with ROS nodes
+\item OpenCV running on the Raspberry Pi 3 with ROS nodes. This setup will allow co-development for the Pi and UP systems.
 \item Intel depth map camera working on the Intel UP
 \end{itemize}
 
