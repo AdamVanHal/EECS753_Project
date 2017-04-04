@@ -1,0 +1,13 @@
+ROS Installation
+
+UP board, ubuntu: Raspberry Pi 3, ubuntu mate 16.04 LTS:
+
+    http://wiki.ros.org/kinetic/Installation/Ubuntu
+    
+    sudo apt-get-repository 'universe'
+    sudo apt-get-repository 'multiverse'
+    sudo apt-get-repository 'restricted'
+
+Tutorial:
+
+    http://wiki.ros.org/ROS/Tutorials

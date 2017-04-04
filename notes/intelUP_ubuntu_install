@@ -1,0 +1,36 @@
+Installing ubuntu on Intel UP board
+
+    Burn ISO to USB
+        $ diskutil list
+        $ sudo umount /dev/diskN
+        $ dd if=/path/to/image.iso of=/dev/diskN
+
+    Fixing Error Where Boot Fails To Complete
+        https://up-community.org/forum/public-otheros/951-solved-unable-to-install-ubuntu
+
+        Edit the command for the "Install Ubuntu" option in the GRUB menu option and add the 'nomodeset' parameter to the linux line 'quiet splash nomodeset ---'. Then, press Ctrl-x or FN F10 to boot. This will allow you to reach the Installation Options. 
+
+        Notice that the above it's just a temporary workaround to allow you to complete the Ubuntu installation. Once Ubuntu is installed, then you need to set the 'nomodeset' permanently by adding this option to the /etc/default/grub file. Otherwise, you will get the blank screen again.
+
+        Immediately after the UP splash screen appears during boot, press and hold the ESC key. In the Password dialog, don't type anything; just press Enter. Then press ESC again, select Yes, and quickly press and release the ESC key. That will bring you the GRUB menu. Select the 'Advanced options for Ubuntu' and select the (recovery mode) option. Then just resume the boot up; which will allow you to reach the Ubuntu desktop. Open the Terminal and do the following:
+
+        $ sudo nano /etc/default/grub
+        GRUB_CMDLINE_LINUX_DEFAULT="quiet splash nomodeset"
+        save and close the file
+        $ sudo update-grub
+        $ sudo reboot
+
+    Update The Installed Software
+        https://01.org/developerjourney/recipe/intel-realsense-robotic-development-kit#step5
+
+        $ sudo apt update
+        $ sudo apt -y dist-upgrade
+        $ sudo add-apt-repository ppa:ubilinux/up
+        $ sudo apt update
+        $ sudo apt -y install linux-upboard
+        $ sudo apt -y autoremove --purge 'linux-.*generic'
+        $ sudo reboot
+
+        Verify Upboard Kernel
+
+        $ uname -r
