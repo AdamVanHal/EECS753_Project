@@ -18,28 +18,42 @@
 \section{Progress}
 \subsection{Devices}
 \begin{itemize}
-\item Imaged two identical Raspberry Pi 3's with ubuntu mate
+\item Imaged two identical Raspberry Pi 3's with Debain Jessie
 \item Installed openCV on Raspberry Pi 3's
 \item Established ways to clone implementations and snapshots between Raspberry Pi 3's
+\item Imaged the Intel UP board
+\item Installed ROS on the Intel UP board
 \item Software will be compatible with multiple devices so long as they have installed the dependencies of ROS and openCV
 \end{itemize}
 
-\subsection{Vision}
+\subsection{Vision}  
 \begin{itemize}
-\item We have established that openCV runs successfully on the Raspberry Pi 3
+\item We ran a Raspberry Pi 3 with Debain Jessie and have established that OpenCV runs successfully with this setup.
 \item The Raspberry Pi 3 runs two simultaneous webcams in order to produce stereo images
-\item We have researched the capabilities of OpenCV running stereo calculations and decided that the depth map produced is usable for navigation. 
-\item As of now, the images are retrieved too slowly to be useful in navigation as the pair of images takes about 10 seconds to run.  This is due to the fact that the cameras are reinitialized for each set of images.  Implementation of ROS nodes to allow a single initialization and images to be produced periodically should improve the timings.
-\item If we want updates every 10cm and to have the robot traveling at the maximum 0.5 m/s we will need to update every 200 ms. obviously faster speeds will require a faster update period for the same result.
+\item We have researched the capabilities of OpenCV running stereo calculations and decided that the depth map produced will be accurate enough to be usable for navigation.
+\item Each image is 640x480 pixels and thus utilizes approximately 2.5MB of space.  We have researched the capabilities of OpenCV running stereo calculations and have concluded that the depth map produced will be useful for navigation.
+\item The question of usability in this real-time application is more dependent on time than on quality of the images or depth-map.  We are confident that we can achieve a usable depth-map utilizing two stereo web-cams, however our initial timing data suggests that we may not achieve our current goal of a 200ms period using the Raspberry Pi 3.  
+\item For the timings in the following table, we ran the image collection program with the two webcams a modest 10 times using the bash "time" command to acquire some preliminary data.  The process was run with no concurrent processes apart from the OS itself.
+\[
+\begin{bmatrix}
+& Average & Maximum & Standard Deviation \\
+Real & 2.3535 & 2.452 & 0.0438 \\
+User + System & 0.2344 & 0.42 & 0.1068 \\
+\end{bmatrix} 
+\]
+\item If we want updates every 10cm and to have the robot traveling at the maximum 0.5 m/s we will need to update every 200 ms. Obviously faster speeds will require a faster update period for the same result.
+\item As of now, the images are retrieved too slowly to be useful in navigation as you can see in the table above since the pair of images takes about two and a half seconds to run.  We suspect that some of this is due to the fact that the cameras are reinitialized for each set of images.  Implementation of ROS nodes to allow a single initialization and images to be produced periodically should improve the timings. We are currently unsure as to why we have such a disparity between the Real time and the User+System time since there could be a number of factors that slow down the Real time of the process.
+\item Debain Jessie also seems not to be easily compatible with the ROS installations that we have attempted.  We installed Debain Jessie since we knew that it was compatible with OpenCV and looked to be compatible with ROS.  This has proven not to be the case.  We are currently in the process of installing the more dependable Ubuntu 16.04 mate LTS and installing both ROS and OpenCV and are optimistic about the compatibility.
+\item We are also in the process of setting up the Intel UP board to produce depth maps.
 \end{itemize}
 
 \subsection{Robot}
 \begin{itemize}
-\item Robot car is implemented with a Junior Runt Rover chassis and motors and is currently controlled by an arduino uno.
-\item The arduino uno can receive commands through serial inputs.
+\item Robot car is implemented with a Junior Runt Rover chassis and motors and is currently controlled by an Arduino Uno.
+\item The Arduino Uno can receive commands through serial inputs that translate into turning rates for the four wheels.
 \item Commands are configured to allow for forward, backward and turning motions on the robot car.
-\item If needed, more complicated commands could be configured for navigational purposes.
-\item The robot car can travel about 0.5 m/s with the current implementation.
+\item More complicated commands can be configured for navigational purposes.
+\item With 2.5" diameter wheels running at about 140 rpm, the robot car can achieve about 1 mph ( 0.5 m/s ) with the current pieces.
 \end{itemize}
 
 \section{Plan}
@@ -69,8 +83,9 @@
 
 \subsection*{4-29-2017}
 \begin{itemize}
+\item Implement "move towards furthest distance" navigation
 \item Improve navigation system and algorithms
-\item Utilize machine learning concepts for navigation
+\item Utilize machine learning concepts such as neural networks for navigation
 \item Bug fixes
 \end{itemize}
 
@@ -89,6 +104,7 @@ Elise
 \item Controls that translate serial commands into robot actions
 \item ROS module implementation
 \item Intel UP board and depth camera implementation
+\item Navigation based off of "best direction" data
 \end{itemize}
 
 Adam
@@ -96,6 +112,7 @@ Adam
 \item OpenCV interactions
 \item Raspberry Pi 3 and OpenCV processing of dual webcams into depthmaps
 \item ROS interactions with OpenCV
+\item Translate depth-maps into "best-direction" data
 \end{itemize}
 
 
