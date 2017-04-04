@@ -1,3 +1,3 @@
 Instructions were adapted from this guide. Note that I skipped anything related to python since we are not using python. Full instructions still coming.
-Note that these are technically for Bebian Jessie
+Note that these are technically for Debian Jessie
 http://www.pyimagesearch.com/2016/04/18/install-guide-raspberry-pi-3-raspbian-jessie-opencv-3/
