@@ -32,7 +32,7 @@
 \item The Raspberry Pi 3 runs two simultaneous webcams in order to produce stereo images
 \item We have researched the capabilities of OpenCV running stereo calculations and decided that the depth map produced will be accurate enough to be usable for navigation.
 \item Each image is 640x480 pixels and thus utilizes approximately 2.5Mb of space.  We have researched the capabilities of OpenCV running stereo calculations and have concluded that the depth map produced will be useful for navigation.
-\item The question of usability in this real-time application is more dependent on time than on quality of the images or depth-map.  We are confidentOpenCV that we can achieve a usable depth-map utilizing two stereo web-cams, however our initial timing data suggests that we may not achieve our current goal of a 200ms period using the Raspberry Pi 3.  
+\item The question of usability in this real-time application is more dependent on time than on quality of the images or depth-map.  We are confidentOpenCV that we can achieve a usable depth-map utilizing two stereo webcams, however our initial timing data suggests that we may not achieve our current goal of a 200ms period using the Raspberry Pi 3.  
 \item For the timings in the following table, we ran the image collection program with the two webcams a modest 10 times using the bash "time" command to acquire some preliminary data.  The process was run with no concurrent processes apart from the OS itself.
 \[
 \begin{bmatrix}
